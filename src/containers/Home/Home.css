@@ -1,0 +1,52 @@
+.hero {
+  background: url("../../assets/clouds.jpg");
+  background-size: cover; }
+  @media screen and (max-width: 768px) {
+    .hero .title {
+      font-weight: bold; } }
+  @media screen and (min-width: 769px), print {
+    .hero .title {
+      font-size: 2.5rem; } }
+  @media screen and (min-width: 1000px) {
+    .hero .title {
+      font-size: 4rem;
+      margin-top: 2rem; } }
+
+h2 {
+  margin: 1.5rem 0 2rem 0 !important; }
+
+.fa-cog {
+  font-size: 40px; }
+
+@media screen and (min-width: 1000px) {
+  #learn {
+    margin-bottom: 2rem; } }
+
+@media screen and (min-width: 769px), print {
+  .pd {
+    padding: 2em 0; } }
+.modal {
+  outline: none;
+  background: white;
+  font-size: 1.6rem;
+  width: 76rem;
+  max-width: 90%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  z-index: 15;
+  min-height: 47rem;
+
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (max-width: 768px) {
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+}
