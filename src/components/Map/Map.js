@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import GoogleMapReact from 'google-map-react';
 import Modal from 'react-modal';
 import { getWaether } from '../../actions';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import '../Map/Map.css';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -18,13 +21,14 @@ const customStyles = {
   }
 };
 
+const MySwal = withReactContent(Swal)
+
 class Map extends Component {
 
   constructor() {
     super();
-
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
     };
 
     this.openModal = this.openModal.bind(this);
@@ -41,8 +45,7 @@ class Map extends Component {
     center: {
       lat: 14.12,
       lng: -28.26
-    },
-    zoom: 1
+    }
   };
 
   openModal() {
@@ -58,14 +61,27 @@ class Map extends Component {
     this.setState({modalIsOpen: false});
   }
 
-
   handleClick(event) {
     let lat = event.lat;
     let lng = event.lng;
-
     this.props.getWaether(lat,lng);
-    this.openModal();
+    this.openSwal()
+    
   };
+
+  openSwal(){
+    let iconName = 'Light+Rain';
+    MySwal.fire({
+      title: this.props.data.timezone,
+      text: 'Modal with a custom image.',
+      imageUrl: `https://s3.amazonaws.com/nihc-weather-app/${iconName}.png`,
+      imageWidth: 300,
+      imageHeight: 300,
+      imageAlt: 'Custom image',
+      animation: true
+    })
+  }
+
   
   render() {
     return (
@@ -77,7 +93,7 @@ class Map extends Component {
                           zoomControl: false,}}
                           bootstrapURLKeys={{ key: 'AIzaSyD7o_wRo4twaMQw9Nx-oSTf9xG5ePzaAn0' }}
                           defaultCenter={this.props.center}
-                          defaultZoom={ this.props.zoom }
+                          defaultZoom={ 1 }
                           onClick={(e) => { this.handleClick(e)}}
             >
               <AnyReactComponent
@@ -89,22 +105,30 @@ class Map extends Component {
         </div>
 
         <Modal
-        isOpen={this.state.modalIsOpen}
-        onAfterOpen={this.afterOpenModal}
-        onRequestClose={this.closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-    >
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          //className="Modal"
+          //overlayClassName="Overlay"
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
         <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
         <button onClick={this.closeModal}>close</button>
-        <div>Reporte del clima</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+        <div></div>
+        <container>
+         <row>
+         <colum>
+         2
+          </colum>
+          <colum>
+          3
+          </colum>
+         </row>
+         <row>
+           8219889
+         </row>
+        </container>
       </Modal>    
       </section>  
     );

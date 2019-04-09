@@ -1,11 +1,8 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux'
-import GoogleMapReact from 'google-map-react';
 import Modal from 'react-modal';
 import { getWaether } from '../../actions';
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const customStyles = {
   content : {
