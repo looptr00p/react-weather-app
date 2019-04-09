@@ -18,7 +18,7 @@ const customStyles = {
   }
 };
 
-class Map extends Component {
+class WeatherModal extends Component {
 
   constructor() {
     super();
@@ -37,14 +37,6 @@ class Map extends Component {
     Modal.setAppElement('body');
   }
 
-  static defaultProps = {
-    center: {
-      lat: 14.12,
-      lng: -28.26
-    },
-    zoom: 1
-  };
-
   openModal() {
     this.setState({modalIsOpen: true});
   }
@@ -57,37 +49,9 @@ class Map extends Component {
   closeModal() {
     this.setState({modalIsOpen: false});
   }
-
-
-  handleClick(event) {
-    let lat = event.lat;
-    let lng = event.lng;
-
-    this.props.getWaether(lat,lng);
-    this.openModal();
-  };
   
   render() {
     return (
-        <section className="section">
-        <div className="container">
-          <div style={{ height: '100vh', width: '100%' }}>
-            <GoogleMapReact
-              options = {{scrollwheel: false,
-                          zoomControl: false,}}
-                          bootstrapURLKeys={{ key: 'AIzaSyD7o_wRo4twaMQw9Nx-oSTf9xG5ePzaAn0' }}
-                          defaultCenter={this.props.center}
-                          defaultZoom={ this.props.zoom }
-                          onClick={(e) => { this.handleClick(e)}}
-            >
-              <AnyReactComponent
-                lat={this.lat}
-                lng={this.lng}
-              />
-            </GoogleMapReact>
-          </div>
-        </div>
-
         <Modal
         isOpen={this.state.modalIsOpen}
         onAfterOpen={this.afterOpenModal}
@@ -96,7 +60,7 @@ class Map extends Component {
         contentLabel="Example Modal"
     >
         <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-        <button onClick={this.closeModal}>close</button>
+        {/* <button onClick={this.closeModal}>close</button> */}
         <div>Reporte del clima</div>
         <form>
           <input />
@@ -105,8 +69,7 @@ class Map extends Component {
           <button>inside</button>
           <button>the modal</button>
         </form>
-      </Modal>    
-      </section>  
+      </Modal>
     );
   }
 }
@@ -117,4 +80,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getWaether})(Map);
+export default connect(mapStateToProps, {getWaether})(WeatherModal);

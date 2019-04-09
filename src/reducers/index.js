@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import weather from './weather'
+import { showModal } from './weather'
 
 export default combineReducers({
-  weather,
+  data: showModal,
 })

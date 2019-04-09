@@ -1,11 +1,14 @@
-const todos = (state = [], action) => {
+import { GET_WEATHER } from '../actions'
+
+const initialState = {
+  data: []
+}
+
+export function showModal(state = initialState, action){
   switch (action.type) {
-    case 'GET_WEATHER':
-      return state,
-      console.log("ACTION FROM REDUCE:",action.event);
+    case GET_WEATHER:
+      return Object.assign({}, state, {data: action.payload})
     default:
       return state
   }
 }
-
-export default todos
