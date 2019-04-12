@@ -3,9 +3,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import GoogleMapReact from 'google-map-react';
 import Modal from 'react-modal';
-import { getWaether } from '../../actions';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import { getWaether, openDialogModal } from '../../actions';
 import '../Map/Map.css';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -20,8 +18,6 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
-
-const MySwal = withReactContent(Swal)
 
 class Map extends Component {
 
@@ -54,7 +50,7 @@ class Map extends Component {
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
+    // this.subtitle.style.color = '#f00';
   }
 
   closeModal() {
@@ -65,24 +61,9 @@ class Map extends Component {
     let lat = event.lat;
     let lng = event.lng;
     this.props.getWaether(lat,lng);
-    this.openSwal()
-    
+    this.openModal();
   };
 
-  openSwal(){
-    let iconName = 'Light+Rain';
-    MySwal.fire({
-      title: this.props.data.timezone,
-      text: 'Modal with a custom image.',
-      imageUrl: `https://s3.amazonaws.com/nihc-weather-app/${iconName}.png`,
-      imageWidth: 300,
-      imageHeight: 300,
-      imageAlt: 'Custom image',
-      animation: true
-    })
-  }
-
-  
   render() {
     return (
         <section className="section">
@@ -102,8 +83,7 @@ class Map extends Component {
               />
             </GoogleMapReact>
           </div>
-        </div>
-
+        </div>    
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -113,23 +93,24 @@ class Map extends Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-        <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-        <button onClick={this.closeModal}>close</button>
-        <div></div>
-        <container>
-         <row>
-         <colum>
-         2
-          </colum>
-          <colum>
-          3
-          </colum>
-         </row>
-         <row>
-           8219889
-         </row>
-        </container>
-      </Modal>    
+        <img src="http://127.0.0.1:8887/cloudy.png" height="300" width="300"/>
+        <div id="id01" class="w3-modal">
+          <div class="w3-modal-content w3-animate-top w3-card-4">
+            <header class="w3-container w3-teal"> 
+              <span onclick="document.getElementById('id01').style.display='none'" 
+              class="w3-button w3-display-topright">&times;</span>
+              <h2>Modal Header</h2>
+            </header>
+            <div class="w3-container">
+              <p>Some text..</p>
+              <p>Some text..</p>
+            </div>
+            <footer class="w3-container w3-teal">
+              <p>Modal Footer</p>
+            </footer>
+          </div>
+        </div>   
+      </Modal>
       </section>  
     );
   }
@@ -137,8 +118,8 @@ class Map extends Component {
 
 function mapStateToProps(state) {
   return {
-    data: state.data.data
+    data: state.data.data,
   }
 }
 
-export default connect(mapStateToProps, {getWaether})(Map);
+export default connect(mapStateToProps, {getWaether, openDialogModal})(Map);

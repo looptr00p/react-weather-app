@@ -1,80 +1,38 @@
-import React from 'react';
-import { Component } from 'react';
-import { connect } from 'react-redux'
-import Modal from 'react-modal';
-import { getWaether } from '../../actions';
+import React, {PropTypes} from 'react';
+import {ModalContainer, ModalDialog} from 'react-modal-dialog';
+import ReactSpinner from 'react-spinjs';
 
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+class View extends React.Component {
+  static propTypes = {
+    // This view takes a isLoading property
+    isLoading: PropTypes.bool,
   }
-};
-
-class WeatherModal extends Component {
-
-  constructor() {
-    super();
-
-    this.state = {
-      modalIsOpen: false
-    };
-
-    this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+  state = {
+    isShowingModal: false,
   }
-
-  componentWillMount() {
-    this.props.getWaether();
-    Modal.setAppElement('body');
-  }
-
-  openModal() {
-    this.setState({modalIsOpen: true});
-  }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
-  }
-
-  closeModal() {
-    this.setState({modalIsOpen: false});
-  }
-  
+  handleClick = () => this.setState({isShowingModal: true})
+  handleClose = () => this.setState({isShowingModal: false})
   render() {
-    return (
-        <Modal
-        isOpen={this.state.modalIsOpen}
-        onAfterOpen={this.afterOpenModal}
-        onRequestClose={this.closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-    >
-        <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-        {/* <button onClick={this.closeModal}>close</button> */}
-        <div>Reporte del clima</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
-      </Modal>
-    );
+    const {
+      props: {
+        isLoading,
+      },
+    } = this;
+
+    return <div onClick={this.handleClick}>
+      {
+        this.state.isShowingModal &&
+        <ModalContainer onClose={this.handleClose}>
+          {
+            isLoading ?
+            <ReactSpinner/> :
+            <ModalDialog onClose={this.handleClose}>
+              <h1>Dialog Content</h1>
+              <p>More Content. Anything goes here</p>
+            </ModalDialog>
+          }
+        </ModalContainer>
+      }
+    </div>;
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    data: state.data.data
-  }
-}
-
-export default connect(mapStateToProps, {getWaether})(WeatherModal);

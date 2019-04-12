@@ -11,3 +11,11 @@ export function getWaether(lat,lng) {
       })
   }
 };
+
+export const DIALOG_MODAL = 'DIALOG_MODAL';
+
+export function openDialogModal(){
+  return (dispatch) => {
+    dispatch({type: DIALOG_MODAL, payload: true})
+  }
+}
