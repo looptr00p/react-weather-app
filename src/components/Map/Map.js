@@ -3,7 +3,8 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import GoogleMapReact from 'google-map-react';
 import Modal from 'react-modal';
-import { getWaether, openDialogModal } from '../../actions';
+import { getWaether, getCountry } from '../../actions';
+import Geocode from "react-geocode";
 import '../Map/Map.css';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -14,8 +15,9 @@ const customStyles = {
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    marginRight           : '0%',
+    transform             : 'translate(-50%, -50%)',
+    opacity               : '10%'
   }
 };
 
@@ -25,15 +27,17 @@ class Map extends Component {
     super();
     this.state = {
       modalIsOpen: false,
+      data:[],
+      country: {}
     };
-
+    
+    Geocode.setApiKey("AIzaSyCmbxB3sQXd7jFIAfrMEUq_TYKUyL1NYWg");
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
   componentWillMount() {
-    this.props.getWaether();
     Modal.setAppElement('body');
   }
 
@@ -61,20 +65,30 @@ class Map extends Component {
     let lat = event.lat;
     let lng = event.lng;
     this.props.getWaether(lat,lng);
+    this.props.getCountry(lat, lng);
     this.openModal();
   };
 
+
   render() {
+    let temperature = Math.trunc((this.props.data.apparentTemperature - 32) * 5/9);
+    let humidity = Math.trunc(this.props.data.humidity * 100);
+    let windSpeed = this.props.data.windSpeed;
+    let cloudCover = Math.trunc(this.props.data.cloudCover * 100);
+    let country = this.props.country.country;
+    let capital = this.props.country.capital;
+    let summary = this.props.data.summary;
     return (
         <section className="section">
         <div className="container">
-          <div style={{ height: '100vh', width: '100%' }}>
+          <div style={{ height: '100vh', width: '100%'  }}>
             <GoogleMapReact
               options = {{scrollwheel: false,
                           zoomControl: false,}}
                           bootstrapURLKeys={{ key: 'AIzaSyD7o_wRo4twaMQw9Nx-oSTf9xG5ePzaAn0' }}
                           defaultCenter={this.props.center}
                           defaultZoom={ 1 }
+                          disableDoubleClickZoom={true}
                           onClick={(e) => { this.handleClick(e)}}
             >
               <AnyReactComponent
@@ -83,7 +97,7 @@ class Map extends Component {
               />
             </GoogleMapReact>
           </div>
-        </div>    
+        </div>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -93,23 +107,35 @@ class Map extends Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-        <img src="http://127.0.0.1:8887/cloudy.png" height="300" width="300"/>
-        <div id="id01" class="w3-modal">
-          <div class="w3-modal-content w3-animate-top w3-card-4">
-            <header class="w3-container w3-teal"> 
-              <span onclick="document.getElementById('id01').style.display='none'" 
-              class="w3-button w3-display-topright">&times;</span>
-              <h2>Modal Header</h2>
-            </header>
-            <div class="w3-container">
-              <p>Some text..</p>
-              <p>Some text..</p>
-            </div>
-            <footer class="w3-container w3-teal">
-              <p>Modal Footer</p>
-            </footer>
-          </div>
-        </div>   
+        <main data-v-5842378c="" class="app--night">
+            <section data-v-a8acd09e="" data-v-5842378c="">
+                <div data-v-a8acd09e="" class="cloudiness">
+                    <img data-v-a8acd09e="" src="http://127.0.0.1:8887/icons/cloud.2b02f907.svg" alt="cloudiness"/>
+                    <span data-v-a8acd09e="" class="cloudiness__value">{cloudCover}</span>%
+                </div> 
+                <div data-v-a8acd09e="" class="wind-speed">
+                    <img data-v-a8acd09e="" src="http://127.0.0.1:8887/icons/wind.05f5c4cf.svg" alt="wind speed"/>
+                    <span data-v-a8acd09e="" class="wind__value">{windSpeed}</span> m/s
+                </div> 
+                <div data-v-a8acd09e="" class="humidity">
+                    <img data-v-a8acd09e="" src="http://127.0.0.1:8887/icons/humidity.e7cc8477.svg" alt="humidity"/>
+                    <span data-v-a8acd09e="" class="humidity__value">{humidity}</span>%
+                </div>
+            </section> 
+            <section data-v-35c83f4c="" data-v-5842378c="">
+                <div data-v-35c83f4c="" class="temperature__value">{temperature}</div> 
+                <div data-v-35c83f4c="" class="temperature__right">
+                    <div data-v-35c83f4c="" class="temperature__scale">
+                        <div data-v-35c83f4c="" class="grade">°C</div>
+                    </div>
+                </div>
+            </section> 
+            <section data-v-148cacf0="" data-v-5842378c="">
+                <div data-v-148cacf0="" class="location">{capital}, {country}</div> 
+                <div data-v-148cacf0="" class="weather__description">{summary}</div> 
+                <img data-v-148cacf0="" src={`http://127.0.0.1:8887/weather-icon/${this.props.data.icon}.png`}  class="weather__icon"/>
+            </section>
+        </main>
       </Modal>
       </section>  
     );
@@ -119,7 +145,8 @@ class Map extends Component {
 function mapStateToProps(state) {
   return {
     data: state.data.data,
+    country: state.data.country
   }
 }
 
-export default connect(mapStateToProps, {getWaether, openDialogModal})(Map);
+export default connect(mapStateToProps, {getWaether, getCountry})(Map);

@@ -1,16 +1,16 @@
-import { GET_WEATHER, DIALOG_MODAL } from '../actions'
+import { GET_WEATHER, GET_COUNTRY } from '../actions'
 
 const initialState = {
   data: [],
-  modal: Boolean,
+  country: {}
 }
 
 export function showModal(state = initialState, action){
   switch (action.type) {
     case GET_WEATHER:
       return Object.assign({}, {...state}, {data: action.payload})
-    case DIALOG_MODAL:
-      return Object.assign({}, {...state}, {modal: action.payload})
+    case GET_COUNTRY:
+      return Object.assign({}, {...state}, {country: action.payload})
     default:
       return state
   }

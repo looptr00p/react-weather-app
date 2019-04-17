@@ -1,0 +1,99 @@
+main[data-v-5842378c] {
+    width: 100%;
+    height: 100%;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -ms-flex-align: center;
+    align-items: center;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, .3), 0 15px 12px rgba(0, 0, 0, .22)
+}
+.app--day[data-v-5842378c] {
+    background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(../../assets/icons/morning.a81f0a40.jpg)
+}
+.app--night[data-v-5842378c] {
+    background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(../../assets/icons/morning.a81f0a40.jpg)
+}
+@media screen and (min-width:450px) {
+    main[data-v-5842378c] {
+        width: 330px;
+        height: 600px;
+        border-radius: 5px
+    }
+}
+section[data-v-148cacf0] {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center
+}
+.location[data-v-148cacf0] {
+    text-transform: uppercase;
+    font-weight: 700
+}
+.weather__description[data-v-148cacf0] {
+    text-transform: lowercase;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center
+}
+.weather__description[data-v-148cacf0]:first-letter {
+    text-transform: uppercase
+}
+.weather__icon[data-v-148cacf0] {
+    width: 12em;
+    padding-bottom: 9em
+}
+section[data-v-35c83f4c] {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+.grade[data-v-35c83f4c]{
+    color: hsla(0, 0%, 100%, .75)
+}
+.temperature__value[data-v-35c83f4c] {
+    font-size: 7em;
+    color: hsla(0, 0%, 100%, .75)
+}
+.temperature__right[data-v-35c83f4c] {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+.temperature__scale[data-v-35c83f4c] {
+    padding-top: 5px;
+    font-size: 2em;
+    font-weight: 700;
+}
+section[data-v-a8acd09e] {
+    width: 100%;
+    padding-top: 25px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly
+}
+.cloudiness img[data-v-a8acd09e],
+.humidity img[data-v-a8acd09e],
+.wind-speed img[data-v-a8acd09e] {
+    width: 48px;
+    height: 48px;
+    vertical-align: middle
+}
