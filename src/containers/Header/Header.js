@@ -25,7 +25,7 @@ class Header extends Component {
           <div className="nav has-shadow">
       <div className="container">
         <div className="nav-left">
-          <a className="nav-item r-item">MyCompany</a>
+          <a className="nav-item r-item">WeatherApp</a>
         </div>
 
         <span className={'nav-toggle '+menuActive} onClick={this.handleClick}>
@@ -36,20 +36,7 @@ class Header extends Component {
 
         <div className={'nav-right nav-menu '+menuActive}>
 
-        <div className="nav-item r-item">Home</div>
-
-          {/* <Link to="/" className="nav-item r-item">Home</Link> */}
-
-          <div className="nav-item">
-            <p className="control">
-              <a className="button is-primary is-outlined">
-                <span className="icon">
-                  <i className="fa fa-download"></i>
-                </span>
-                <span>Join Now</span>
-              </a>
-            </p>
-          </div>
+        <div className="nav-item r-item"></div>
 
         </div>
       </div>

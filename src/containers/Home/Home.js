@@ -17,7 +17,7 @@ class Home extends Component {
                     <div className="is-two-thirds column is-paddingless">
                         <h2 className="subtitle is-4">{ subheading }</h2>
                     </div>
-                    <a className="button is-large is-primary" id="learn">Learn more</a>
+                    <a className="button is-large is-primary" id="learn" href="https://github.com/looptr00p">Learn more</a>
                     </div>
                 </div>
             </section>

@@ -107,33 +107,33 @@ class Map extends Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-        <main data-v-5842378c="" class="app--night">
+        <main data-v-5842378c="" className="app--night">
             <section data-v-a8acd09e="" data-v-5842378c="">
-                <div data-v-a8acd09e="" class="cloudiness">
-                    <img data-v-a8acd09e="" src="http://127.0.0.1:8887/icons/cloud.2b02f907.svg" alt="cloudiness"/>
-                    <span data-v-a8acd09e="" class="cloudiness__value">{cloudCover}</span>%
+                <div data-v-a8acd09e="" className="cloudiness">
+                    <img data-v-a8acd09e="" src="https://s3.amazonaws.com/nihc-weather-app/icons/cloud.2b02f907.svg" alt="cloudiness"/>
+                    <span data-v-a8acd09e="" className="cloudiness__value">{cloudCover}</span>%
                 </div> 
-                <div data-v-a8acd09e="" class="wind-speed">
-                    <img data-v-a8acd09e="" src="http://127.0.0.1:8887/icons/wind.05f5c4cf.svg" alt="wind speed"/>
-                    <span data-v-a8acd09e="" class="wind__value">{windSpeed}</span> m/s
+                <div data-v-a8acd09e="" className="wind-speed">
+                    <img data-v-a8acd09e="" src="https://s3.amazonaws.com/nihc-weather-app/icons/wind.05f5c4cf.svg" alt="wind speed"/>
+                    <span data-v-a8acd09e="" className="wind__value">{windSpeed}</span> m/s
                 </div> 
-                <div data-v-a8acd09e="" class="humidity">
-                    <img data-v-a8acd09e="" src="http://127.0.0.1:8887/icons/humidity.e7cc8477.svg" alt="humidity"/>
-                    <span data-v-a8acd09e="" class="humidity__value">{humidity}</span>%
+                <div data-v-a8acd09e="" className="humidity">
+                    <img data-v-a8acd09e="" src="https://s3.amazonaws.com/nihc-weather-app/icons/humidity.e7cc8477.svg" alt="humidity"/>
+                    <span data-v-a8acd09e="" className="humidity__value">{humidity}</span>%
                 </div>
             </section> 
             <section data-v-35c83f4c="" data-v-5842378c="">
-                <div data-v-35c83f4c="" class="temperature__value">{temperature}</div> 
-                <div data-v-35c83f4c="" class="temperature__right">
-                    <div data-v-35c83f4c="" class="temperature__scale">
-                        <div data-v-35c83f4c="" class="grade">°C</div>
+                <div data-v-35c83f4c="" className="temperature__value">{temperature}</div> 
+                <div data-v-35c83f4c="" className="temperature__right">
+                    <div data-v-35c83f4c="" className="temperature__scale">
+                        <div data-v-35c83f4c="" className="grade">°C</div>
                     </div>
                 </div>
             </section> 
             <section data-v-148cacf0="" data-v-5842378c="">
-                <div data-v-148cacf0="" class="location">{capital}, {country}</div> 
-                <div data-v-148cacf0="" class="weather__description">{summary}</div> 
-                <img data-v-148cacf0="" src={`http://127.0.0.1:8887/weather-icon/${this.props.data.icon}.png`}  class="weather__icon"/>
+                <div data-v-148cacf0="" className="location">{capital}, {country}</div> 
+                <div data-v-148cacf0="" className="weather__description">{summary}</div> 
+                <img data-v-148cacf0="" src={`https://s3.amazonaws.com/nihc-weather-app/weather-icon/${this.props.data.icon}.png`} className="weather__icon"/>
             </section>
         </main>
       </Modal>

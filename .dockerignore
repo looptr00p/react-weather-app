@@ -1,0 +1,6 @@
+.git
+.gitignore
+.idea
+build
+README.md
+node_modules

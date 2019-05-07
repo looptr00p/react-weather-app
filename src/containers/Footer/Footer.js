@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="container">
                 <div className="columns">
                 <div className="column">
-                    <p>And this right here is a spiffy footer, where you can put stuff.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
                 <div className="column has-text-right">
                     <a className="icon" href="#"><i className="fa fa-facebook"></i></a>
