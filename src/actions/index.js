@@ -7,7 +7,7 @@ export const GET_WEATHER = 'GET_WEATHER';
 
 export function getWaether(lat,lng) {
   return (dispatch) => {
-    axios.get(`http://weathapi.docker.localhost/api/getWeather/${lat}/${lng}`)
+    axios.get(`http://dockhero-corrugated-63343.dockhero.io/api/getWeather/${lat}/${lng}`)
       .then((respose) => {
         console.log(respose.data)
         dispatch({type: GET_WEATHER, payload: respose.data})
